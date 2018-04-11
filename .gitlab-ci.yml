@@ -1,9 +1,9 @@
-image: python:2-stretch
+image: docker:latest
 
 molecule:
   script:
     - apt update
-    - apt install -y docker
+    - apt install -y python python-pip
     - docker --version
     - python --version
     - pip --version
