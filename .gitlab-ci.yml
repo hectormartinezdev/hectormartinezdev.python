@@ -1,6 +1,6 @@
-image: williamyeh/ansible:debian9-onbuild
+image: python:strecth
 
 molecule:
   script:
-    - pip install molecule
+    - python3 -m pip install molecule ansible
     - molecule test
