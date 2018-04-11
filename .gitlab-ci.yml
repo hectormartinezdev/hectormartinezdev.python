@@ -6,3 +6,5 @@ services:
 molecule:
   script:
     - docker --version
+    - python --version
+    - pip --version
