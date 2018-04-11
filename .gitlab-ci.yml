@@ -1,4 +1,4 @@
-image: python:stretch
+image: python:latest
 
 molecule:
   script:
