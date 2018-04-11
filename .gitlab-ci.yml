@@ -2,5 +2,5 @@ image: python:2-stretch
 
 molecule:
   script:
-    - pip install molecule ansible
-    - molecule test
+    - pip install molecule ansible docker-py
+    - molecule --debug test
