@@ -3,7 +3,7 @@ image: docker:latest
 molecule:
   script:
     - apk update
-    - apk add -y python python-pip
+    - apk add python python-pip
     - docker --version
     - python --version
     - pip --version
