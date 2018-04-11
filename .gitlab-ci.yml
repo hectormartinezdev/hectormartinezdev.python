@@ -2,5 +2,5 @@ image: python:stretch
 
 molecule:
   script:
-    - python3 -m pip install molecule ansible
+    - python2 -m pip install molecule ansible
     - molecule test
