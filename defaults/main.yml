@@ -1,0 +1,13 @@
+---
+# defaults file for python
+py_version: 3.6.5
+py_apt_deps:
+  - build-essential
+  - libssl-dev
+  - libreadline-dev
+  - libsqlite3-dev
+  - libtinfo-dev
+  - zlib1g-dev
+  - tcl-dev
+  - tk-dev
+  - blt-dev

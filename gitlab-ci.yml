@@ -1,0 +1,5 @@
+image: williamyeh/ansible:debian9-onbuild
+
+molecule:
+  - pip install molecule
+  - molecule test

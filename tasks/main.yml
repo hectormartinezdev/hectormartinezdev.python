@@ -1,0 +1,49 @@
+---
+# tasks file for python
+
+- name: "Installing Python-{{ py_version }}..."
+  set_fact:
+    _py_sources_dir: /opt/sources/python/{{ py_version }}
+    _py_install_dir: /opt/software/python/{{ py_version }}
+
+- name: "Installing APT dependencies..."
+  apt:
+    name: "{{ item }}"
+  with_items: "{{ py_apt_deps }}"
+
+- name: "Ensuring that downloading and installation directories exist..."
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ _py_install_dir }}"
+    - "{{ _py_sources_dir }}"
+
+- name: "Downloading..."
+  unarchive:
+    remote_src: yes
+    src: "https://www.python.org/ftp/python/{{ py_version }}/Python-{{ py_version }}.tgz"
+    dest: "{{ _py_sources_dir }}"
+    extra_opts: [--strip-components=1]  # Needed since the sources are packed inside a folder named PythonX.Y.Z
+    creates: "{{ _py_sources_dir }}/configure"
+
+- name: "Configuring..."
+  command: "./configure --prefix={{ _py_install_dir }}"
+  args:
+    chdir: "{{ _py_sources_dir }}"
+    creates: "{{ _py_sources_dir }}/Makefile"
+
+- name: "Make'ing..."
+  make:
+    chdir: "{{ _py_sources_dir }}"
+
+- name: "Make'ing altinstall..."
+  make:
+    chdir: "{{ _py_sources_dir }}"
+    target: altinstall
+
+- name: "Adding profile file..."
+  template:
+    src: python.sh.j2
+    dest: /etc/profile.d/python.sh
+    mode: 0644
