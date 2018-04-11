@@ -2,8 +2,8 @@ image: docker:latest
 
 molecule:
   script:
-    - apt update
-    - apt install -y python python-pip
+    - apk update
+    - apk add -y python python-pip
     - docker --version
     - python --version
     - pip --version
