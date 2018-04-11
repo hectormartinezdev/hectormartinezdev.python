@@ -2,7 +2,7 @@ image: docker:latest
 
 molecule:
   script:
-    - apk update && add --update-cache python python-pip
+    - apk update && apk add --update-cache python python-pip
     - docker --version
     - python --version
     - pip --version
