@@ -8,4 +8,5 @@ variables:
 
 molecule:
   script:
-    - apk add --update python-dev
+    - apk add --update python-dev curl
+    - curl https://bootstrap.pypa.io/get-pip.py | python
