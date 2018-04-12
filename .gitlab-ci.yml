@@ -8,6 +8,6 @@ variables:
 
 molecule:
   script:
-    - apk add --update python-dev curl
+    - apk add --update python-dev curl build-base
     - curl https://bootstrap.pypa.io/get-pip.py | python
     - pip install ansible molecule
