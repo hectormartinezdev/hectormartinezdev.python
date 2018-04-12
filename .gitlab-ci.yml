@@ -3,5 +3,4 @@ image: python:latest
 
 ansible:
   script:
-    - env
     - make test
