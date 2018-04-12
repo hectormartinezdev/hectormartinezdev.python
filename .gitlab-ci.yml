@@ -2,8 +2,7 @@ image: python:stretch
 
 molecule:
   script:
-    - apt update
-    - apt install docker-ce
+    - apt update && apt install docker-ce
     - docker --version
     - python --version
     - pip --version
