@@ -24,8 +24,8 @@ check: ## Run ansible-playbook --check
 	ansible-playbook tests/playbook.yml -i tests/inventory --check
 
 test: ## Autodetect if we are on GitLab CI or in local and run test accordlingly
-ifeq ($(GITLAB_CI), "hector")
-	@echo $(GITLAB_CI)
+ifdef GITLAB_CI
+	@echo GITLAB_CI TEST
 else
 	@echo LOCAL TEST
 endif
