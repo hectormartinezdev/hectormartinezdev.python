@@ -1,8 +1,8 @@
-image: docker:latest
+image: python:stretch
 
 molecule:
   script:
-    - apk update && apk add --update-cache python python-pip
+    - apt install docker-ce
     - docker --version
     - python --version
     - pip --version
