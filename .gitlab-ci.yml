@@ -1,13 +1,6 @@
-image: docker:latest
+---
+image: python:latest
 
-services:
-  - docker:dind
-
-variables:
-  DOCKER_DRIVER: overlay
-
-molecule:
+ansible:
   script:
-    - apk add --update python-dev curl build-base
-    - curl https://bootstrap.pypa.io/get-pip.py | python
-    - pip install ansible molecule
+    - make test
