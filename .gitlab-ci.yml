@@ -1,10 +1,11 @@
-image: python:stretch
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay
 
 molecule:
   script:
-    - apt update && apt install docker-ce
-    - docker --version
-    - python --version
-    - pip --version
-    - pip install -U pip setuptools wheels molecule ansible docker-py
-    - molecule --debug test
+    - apk add --update python-dev
