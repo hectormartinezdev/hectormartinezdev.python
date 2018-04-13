@@ -18,14 +18,14 @@ help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 syntax: ## Runs ansible-playbook --syntax
-	ansible-playbook tests/playbook.yml -i tests/inventory --syntax
+	ansible-playbook tests/playbook.yml --syntax
 
 check: ## Run ansible-playbook --check
-	ansible-playbook tests/playbook.yml -i tests/inventory --check
+	ansible-playbook tests/playbook.yml --check
 
-test: ## Autodetect if we are on GitLab CI or in local and run test accordlingly
-ifdef GITLAB_CI
-	@echo GITLAB_CI TEST
+test: ## Adapt the tests if GITLAB_CI is true
+ifeq ($(GITLAB_CI),true)
+	ansible-playbook tests/playbook.yml
 else
-	@echo LOCAL TEST
+	ansible-playbook tests/playbook.yml
 endif

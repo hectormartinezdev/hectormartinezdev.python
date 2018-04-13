@@ -3,4 +3,5 @@ image: python:latest
 
 ansible:
   script:
+    - pip install ansible
     - make test
