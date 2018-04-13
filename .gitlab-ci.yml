@@ -3,5 +3,6 @@ image: python:latest
 
 ansible:
   script:
+    - apt update && apt install -y python3-apt
     - pip install ansible
     - make test
