@@ -3,6 +3,6 @@ image: python:stretch
 
 ansible:
   script:
-    - apt update && apt install -y python3-apt
+    - apt-get update && apt-get install -y python3-apt python-apt
     - pip install ansible
     - make test
