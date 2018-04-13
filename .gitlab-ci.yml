@@ -1,12 +1,9 @@
 ---
-image: python:stretch
+image: ubuntu:latest
 
 ansible:
   script:
-    - env
-    - apt-get update && apt-get install -y python3-apt python-apt
-    - python3.5 -c "import apt"
-    - python --version
-    - python3 --version
+    - apt-get update
+    - apt-get install -y python-apt
     - pip install ansible
     - make test
