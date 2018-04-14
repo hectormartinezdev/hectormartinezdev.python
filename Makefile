@@ -12,20 +12,22 @@ for line in sys.stdin:
 endef
 export PRINT_HELP_PYSCRIPT
 
-help:
+help:  ## Show this message and exit
 	@echo Make usage:
 	@echo
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
-syntax: ## Runs ansible-playbook --syntax
+lint: ## Run yamllint, ansible-lint and ansible-playbook --syntax
+	yamllint . --strict
+	ansible-lint . -v
 	ansible-playbook tests/playbook.yml --syntax
 
-check: ## Run ansible-playbook --check
-	ansible-playbook tests/playbook.yml --check
+install: ## Install the role locally
+	ansible-playbook tests/playbook.yml
 
 test: ## Adapt the tests if GITLAB_CI is true
 ifeq ($(GITLAB_CI),true)
 	ansible-playbook tests/playbook.yml
 else
-	ansible-playbook tests/playbook.yml
+	@echo This rule only applies to GITLAB_CI environment. Use \"make install\" to run the role.
 endif
