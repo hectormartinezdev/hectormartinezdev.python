@@ -21,7 +21,7 @@
 
 - name: "Downloading..."
   unarchive:
-    remote_src: yes
+    remote_src: true
     src: "https://www.python.org/ftp/python/{{ py_version }}/Python-{{ py_version }}.tgz"
     dest: "{{ _py_sources_dir }}"
     extra_opts: [--strip-components=1]  # Needed since the sources are packed inside a folder named PythonX.Y.Z
