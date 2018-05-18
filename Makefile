@@ -20,12 +20,12 @@ help:  ## Show this message and exit
 lint: ## Run yamllint, ansible-lint and ansible-playbook --syntax
 	yamllint . --strict
 	ansible-lint . -v
-	ansible-playbook tests/playbook.yml --syntax
+	ansible-playbook tests/playbook.yml --syntax-check
 
 install: ## Install the role locally
 	ansible-playbook tests/playbook.yml
 
-test: ## Adapt the tests if GITLAB_CI is true
+test: lint## Adapt the tests if GITLAB_CI is true
 ifeq ($(GITLAB_CI),true)
 	ansible-playbook tests/playbook.yml
 else
