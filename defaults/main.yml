@@ -11,3 +11,4 @@ py_apt_deps:
   - tcl-dev
   - tk-dev
   - blt-dev
+  - libffi-dev
