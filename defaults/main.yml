@@ -1,6 +1,6 @@
 ---
 # defaults file for python
-py_version: 3.6.5
+py_version: 3.7.0
 py_apt_deps:
   - build-essential
   - libssl-dev
