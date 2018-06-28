@@ -41,9 +41,4 @@
   make:
     chdir: "{{ _py_sources_dir }}"
     target: altinstall
-
-- name: "Adding profile file..."
-  template:
-    src: python.sh.j2
-    dest: /etc/profile.d/python.sh
-    mode: 0644
+  params: "{{ ansible_processor_vcpus }}"
