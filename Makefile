@@ -20,7 +20,7 @@ help:  ## Show this message and exit
 lint: ## Run yamllint, ansible-lint and ansible-playbook --syntax
 	yamllint . --strict
 	ansible-lint . -v
-	ansible-playbook tests/playbook.yml --syntax-check
+	ansible-playbook -i localhost, -c local tests/playbook.yml --syntax-check
 
 install: ## Install the role locally
 	ansible-playbook tests/playbook.yml
