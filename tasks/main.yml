@@ -36,9 +36,12 @@
 - name: "Make'ing..."
   make:
     chdir: "{{ _py_sources_dir }}"
+  environment:
+    MAKEFLAGS: "-j{{ ansible_processor_vcpus }}"
 
 - name: "Make'ing altinstall..."
   make:
     chdir: "{{ _py_sources_dir }}"
     target: altinstall
-    params: "{{ ansible_processor_vcpus }}"
+  environment:
+    MAKEFLAGS: "-j{{ ansible_processor_vcpus }}"

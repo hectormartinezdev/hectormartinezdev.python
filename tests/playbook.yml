@@ -4,6 +4,3 @@
   roles:
     - role: ansible-role-python
       py_version: 3.7.0
-
-    - role: ansible-role-python
-      py_version: 2.7.15
