@@ -12,3 +12,4 @@ py_apt_deps:
   - tk-dev
   - blt-dev
   - libffi-dev
+  - libbz2-dev
