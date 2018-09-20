@@ -29,5 +29,9 @@ test: lint## Adapt the tests if GITLAB_CI is true
 ifeq ($(GITLAB_CI),true)
 	ansible-playbook tests/playbook.yml
 else
-	@echo This rule only applies to GITLAB_CI environment. Use \"make install\" to run the role.
+ifeq (, $(shell which docker))
+	$(error "'docker' in found in PATH, can not run the test in local.")
+else
+	docker run --rm -it -v $(PWD):/$(shell basename $(PWD)) -w /$(shell basename $(PWD)) python /bin/bash -c "pip --quiet install ansible &&  ansible-playbook -i 'localhost,' -c local tests/playbook.yml"
+endif
 endif
