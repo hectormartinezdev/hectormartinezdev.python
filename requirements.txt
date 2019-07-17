@@ -1,3 +1,0 @@
-ansible
-yamllint
-ansible-lint

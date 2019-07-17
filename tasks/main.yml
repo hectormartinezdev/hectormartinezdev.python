@@ -1,25 +1,17 @@
 ---
-# tasks file for python
-
-- name: "Installing Python-{{ py_version }}..."
-  set_fact:
-    _py_sources_dir: /opt/sources/python/{{ py_version }}
-    _py_install_dir: /opt/software/python/{{ py_version }}
-
-- name: "Installing APT dependencies..."
+- name: install apt dependencies
   apt:
-    name: "{{ item }}"
-  with_items: "{{ py_apt_deps }}"
+    name: "{{ py_apt_deps }}"
 
-- name: "Ensuring that downloading and installation directories exist..."
+- name: ensure install and sources dir exist
   file:
     path: "{{ item }}"
     state: directory
-  with_items:
+  loop:
     - "{{ _py_install_dir }}"
     - "{{ _py_sources_dir }}"
 
-- name: "Downloading..."
+- name: download package
   unarchive:
     remote_src: true
     src: "https://www.python.org/ftp/python/{{ py_version }}/Python-{{ py_version }}.tgz"
@@ -27,21 +19,23 @@
     extra_opts: [--strip-components=1]  # Needed since the sources are packed inside a folder named PythonX.Y.Z
     creates: "{{ _py_sources_dir }}/configure"
 
-- name: "Configuring..."
+- name: configure
   command: "./configure --prefix={{ _py_install_dir }}"
   args:
     chdir: "{{ _py_sources_dir }}"
     creates: "{{ _py_sources_dir }}/Makefile"
 
-- name: "Make'ing..."
+- name: make
   make:
     chdir: "{{ _py_sources_dir }}"
   environment:
     MAKEFLAGS: "-j{{ ansible_processor_vcpus }}"
+  changed_when: false
 
-- name: "Make'ing altinstall..."
+- name: make altinstall
   make:
     chdir: "{{ _py_sources_dir }}"
     target: altinstall
   environment:
     MAKEFLAGS: "-j{{ ansible_processor_vcpus }}"
+  changed_when: false

@@ -1,13 +1,16 @@
 ---
 galaxy_info:
-  author: Hector Martinez-Lopez
-  description: Role that installs python with certain dev libraries of tk, curses, etc.
-  license: BSD
+  role_name: python
+  author: Hector Martinez Lopez
+  description: Role that installs python with dev libraries of tk, curses, etc.
+  license: MIT
   min_ansible_version: 2.4
   platforms:
     - name: Ubuntu
       versions:
-        - bionic
+        - 18.04
 
-  galaxy_tags: []
+  galaxy_tags:
+    - python
+
 dependencies: []

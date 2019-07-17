@@ -1,6 +1,0 @@
----
-- name: Run the role
-  hosts: localhost
-  roles:
-    - role: ansible-role-python
-      py_version: 3.7.0
